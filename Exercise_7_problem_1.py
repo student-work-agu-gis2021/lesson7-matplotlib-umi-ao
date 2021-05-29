@@ -38,7 +38,7 @@ assert len(data) == 1000, "There should be 1000 rows of data."
 # 
 
 # YOUR CODE HERE 2 to set colors
-
+colors = np.random.rand(1000)
 # This test print should print out 10 first numbers in the variable colors
 print(colors[0:10])
 
@@ -59,7 +59,7 @@ assert len(colors) == 1000, "There should be 1000 random numbers for colors"
 
 # Plot a scatter plot
 # YOUR CODE HERE 3
-
+data.plot.scatter(data['x'],data['y'],s=50,c=colors,colormap = 'rainbow',edgecolor = 'black')
 # Add labels and title
 # YOUR CODE HERE 4
 
