@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -73,7 +74,7 @@ plt.ylabel(ylabel)
 outputfp = "my_first_plot.png"
 
 # YOUR CODE HERE 5
-data.plt.savefig("my_first_plot.png")
+plt.savefig("my_first_plot.png")
 # This test print statement should print the output filename of your figure
 print("Saved my first plot as:", outputfp)
 
