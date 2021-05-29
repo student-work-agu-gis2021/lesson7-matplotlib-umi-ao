@@ -19,6 +19,7 @@ import numpy as np
 import pandas as pd
 
 # YOUR CODE HERE 1 to set data
+import matplotlib.pyplot as plt
 random_numbers1 = np.random.rand(1000)
 random_numbers2 = np.random.rand(1000)
 data = pd.DataFrame({
@@ -59,15 +60,15 @@ assert len(colors) == 1000, "There should be 1000 random numbers for colors"
 
 # Plot a scatter plot
 # YOUR CODE HERE 3
-data.plot.scatter(data['x'],data['y'],s=50,c=colors,colormap = 'rainbow',edgecolor = 'black')
+data.plot(kind="scatter",x='x',y='y',s = 50,c = colors,colormap = 'rainbow',edgecolor = 'black')
 # Add labels and title
 # YOUR CODE HERE 4
 title = "My random candy points"
 xlabel = "X-label"
 ylabel = "Y-label"
-data.plt.title(title)
-data.plt.xlabel(xlabel)
-data.plt.ylabel(ylabel)
+plt.title(title)
+plt.xlabel(xlabel)
+plt.ylabel(ylabel)
 # Save the plot as a png file:
 outputfp = "my_first_plot.png"
 
