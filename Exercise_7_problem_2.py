@@ -33,7 +33,8 @@ print(len(data))
 # - Store the selection in a new variable `selection`
 
 # YOUR CODE HERE 2
-
+data["date_time"] = pd.to_datetime(data.index)
+selection = data[(data["date_time"].dt.year >= 1988 )& (data["date_time"].dt.year <=2018)]
 # Check that the data was read in correctly:
 selection.head()
 
