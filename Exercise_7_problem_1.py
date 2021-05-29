@@ -62,7 +62,12 @@ assert len(colors) == 1000, "There should be 1000 random numbers for colors"
 data.plot.scatter(data['x'],data['y'],s=50,c=colors,colormap = 'rainbow',edgecolor = 'black')
 # Add labels and title
 # YOUR CODE HERE 4
-
+title = "My random candy points"
+xlabel = "X-label"
+ylabel = "Y-label"
+data.plt.title(title)
+data.plt.xlabel(xlabel)
+data.plt.ylabel(ylabel)
 # Save the plot as a png file:
 outputfp = "my_first_plot.png"
 
