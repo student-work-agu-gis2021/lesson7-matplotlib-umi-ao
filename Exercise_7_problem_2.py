@@ -20,6 +20,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+#read a data and parese dates from the column `'DATE'` and set the dates as index in the dataframe 
 data = pd.read_csv("data/helsinki-vantaa.csv",parse_dates=['DATE'],index_col = 'DATE' )
 # This test print should print first five rows
 print(data.head())
@@ -34,8 +35,10 @@ print(len(data))
 # - Store the selection in a new variable `selection`
 
 # YOUR CODE HERE 2
+# change index of data to type of datetime and make colum "date_time"
 data["date_time"] = pd.to_datetime(data.index)
-selection = data[(data["date_time"].dt.year >= 1988 )& (data["date_time"].dt.year <=2018 )]
+# Select data for a 30 year period (January 1988 - December 2018)
+selection = data.loc[(data.index >= '1988-01-01' )& (data.index <='2018-12-31' )]
 # Check that the data was read in correctly:
 selection.head()
 
@@ -55,27 +58,33 @@ print("Number of rows:", len(selection))
 # 
 
 # YOUR CODE HERE 3
+
+# Create an empty DataFrame for the aggregated values
 monthly_data = pd.DataFrame()
-
-selection['DATA_Month'] = selection["date_time"].astype(str).str.slice(start = 0, stop = 7)
-
+# make a new colum "DATA_Month" and add data that seven-character data
+selection['DATA_Month'] = selection.loc[selection.index,'date_time'].astype(str).str.slice(start = 0, stop = 7)
+# grouped selection data by 'DATA_Month'
 grouped = selection.groupby('DATA_Month')
-
+# make new variable "data1" that has data of mean of groupede
 data1 = grouped.mean()
-
+# add a data of data1 of 'TEMP_C'
 monthly_data['temp_celsius_monthly'] = data1['TEMP_C']
+# add a data of data1 of index
 monthly_data["TIME"] = data1.index
-monthly_data["TIME"]= monthly_data["TIME"].astype(str).str.slice(start = 0, stop = 4)
 
-start_time = pd.to_datetime('19880101')
-end_time = pd.to_datetime('20201231')
-
-monthly_data.plot.line(x = 'TIME',y='temp_celsius_monthly',style = ['k.-'], figsize=(14,6))
-
+# make a new colum "TIME/" and add data that seven-character data
+monthly_data["TIME/"]= monthly_data.loc[:,'TIME'].astype(str).str.slice(start = 0, stop = 4)
+# plot monthly data 
+monthly_data.plot.line(x = 'TIME/',y='temp_celsius_monthly',style = ['k.-'], figsize=(14,6))
+# add title
 plt.title("Helsinki-Vantaa Airport")
+# add x-label
 plt.xlabel("Time")
+# add y-label
 plt.ylabel("Temperature (Celsius)")
+# add grid line
 plt.grid()
+
 
 # Set output file name
 outputfp = "temp_line_plot.png"
